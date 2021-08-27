@@ -47,16 +47,16 @@ public class EmployeeController extends BaseController<Employee, Integer>{
 
     @Override
     public void showAll() {
-        employeeView.showAllEmployee();
+        employeeView.showAll();
     }
 
     @Override
     public void form(int type) {
-        employeeView.formEmployee(type);
+        employeeView.form(type);
     }
 
     @Override
     public void showSingle() {
-        employeeView.showEmployee();
+        employeeView.show();
     }
 }

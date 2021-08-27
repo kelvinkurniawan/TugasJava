@@ -15,11 +15,11 @@ import models.Employee;
  *
  * @author kelvi
  */
-public class EmployeeView{
-    
-    Scanner scanner = new Scanner(System.in);
+public class EmployeeView implements BaseView{
+
     int empId;
-        
+
+    @Override
     public void display(){
         int option = 0;
         System.out.println("Showing menu under Employee");
@@ -48,8 +48,9 @@ public class EmployeeView{
                         
         }
     }
-    
-    public void formEmployee(int type){
+
+    @Override
+    public void form(int type){
         
         Employee employee = new Employee();
         
@@ -95,8 +96,9 @@ public class EmployeeView{
 
         new EmployeeController().display();
     }
-    
-    public void showEmployee(){
+
+    @Override
+    public void show(){
         System.out.print("Enter employee ID : ");
         empId = scanner.nextInt();
         System.out.println();
@@ -128,7 +130,7 @@ public class EmployeeView{
             System.out.println("=================================");
             switch(option){
                 case 1:
-                    formEmployee(2);
+                    form(2);
                     break;
                 case 2:
                     new EmployeeController().delete(employee.getId());
@@ -146,8 +148,9 @@ public class EmployeeView{
             System.out.println("Sorry employee with id " +empId+ " not found!");
         }
     }
-    
-    public void showAllEmployee(){
+
+    @Override
+    public void showAll(){
         for (Employee employee : new EmployeeController().getAll()) {
             System.out.println("Employee ID : " + employee.getId());
             System.out.println("First Name : " + employee.getFirstName());

@@ -5,7 +5,9 @@
  */
 package controllers;
 
+import daos.JobDao;
 import models.Job;
+import views.JobView;
 
 import java.util.List;
 
@@ -15,43 +17,51 @@ import java.util.List;
  */
 public class JobController extends BaseController<Job, String>{
 
+    JobDao jobDao;
+    JobView jobView;
+
+    public JobController(){
+        jobDao = new JobDao(dbc.getConnection());
+        jobView = new JobView();
+    }
+
     @Override
     public List<Job> getAll() {
-        return null;
+        return jobDao.getAll();
     }
 
     @Override
     public Job getById(String id) {
-        return null;
+        return jobDao.getById(id);
     }
 
     @Override
-    public boolean save(Job object) {
-        return false;
+    public boolean save(Job job) {
+        return jobDao.save(job);
     }
 
     @Override
     public boolean delete(String id) {
-        return false;
+        return jobDao.delete(id);
     }
 
     @Override
     public void display() {
-
+        jobView.display();
     }
 
     @Override
     public void form(int type) {
-
+        jobView.form(type);
     }
 
     @Override
     public void showSingle() {
-
+        jobView.show();
     }
 
     @Override
     public void showAll() {
-
+        jobView.showAll();
     }
 }

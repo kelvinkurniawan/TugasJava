@@ -27,11 +27,13 @@ public class HomeController {
         switch(option){
             case 1:
                 new EmployeeController().display();
-            break;
+                break;
+            case 3:
+                new JobController().display();
+                break;
             case 4:
-                RegionView regionView = new RegionView();
-                regionView.display();
-                        
+                new RegionController().display();
+                break;
         }
     }
 }

@@ -50,16 +50,16 @@ public class RegionController extends BaseController<Region, Integer>{
 
     @Override
     public void form(int type) {
-        regionView.formRegion(type);
+        regionView.form(type);
     }
 
     @Override
     public void showSingle() {
-        regionView.showRegion();
+        regionView.show();
     }
 
     @Override
     public void showAll() {
-        regionView.showAllRegion();
+        regionView.showAll();
     }
 }
