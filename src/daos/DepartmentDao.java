@@ -77,8 +77,8 @@ public class DepartmentDao implements DAOInterface<Department, Integer>{
             }
 
             preparedStatement.setString(1, department.getName());
-            preparedStatement.setInt(2, department.getManager_id());
-            preparedStatement.setInt(3, department.getLocation_id());
+            preparedStatement.setInt(2, department.getManager());
+            preparedStatement.setInt(3, department.getLocation());
             preparedStatement.setInt(4, department.getId());
             preparedStatement.execute();
             return true;

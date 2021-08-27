@@ -14,20 +14,20 @@ import java.sql.Date;
  * @author kelvi
  */
 public class Employee {
-    private int id, manager_id, department_id;
-    private String firstName, lastName, email, phone, job_id;
+    private int id, manager_id, department;
+    private String firstName, lastName, email, phone, job;
     private Date hireDate;
     private double salary, commisionPct;
 
     public Employee(int id, String firstName, String lastName, String email, String phone, Date hireDate, String job_id, double salary, double commisionPct, int manager_id, int department_id) {
         this.id = id;
         this.manager_id = manager_id;
-        this.department_id = department_id;
+        this.department = department_id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
-        this.job_id = job_id;
+        this.job = job_id;
         this.hireDate = hireDate;
         this.salary = salary;
         this.commisionPct = commisionPct;
@@ -41,20 +41,20 @@ public class Employee {
         this.id = id;
     }
 
-    public int getManager_id() {
+    public int getManager() {
         return manager_id;
     }
 
-    public void setManager_id(int manager_id) {
+    public void setManager(int manager_id) {
         this.manager_id = manager_id;
     }
 
-    public int getDepartment_id() {
-        return department_id;
+    public int getDepartment() {
+        return department;
     }
 
-    public void setDepartment_id(int department_id) {
-        this.department_id = department_id;
+    public void setDepartment(int department_id) {
+        this.department = department_id;
     }
 
     public String getFirstName() {
@@ -89,12 +89,12 @@ public class Employee {
         this.phone = phone;
     }
 
-    public String getJob_id() {
-        return job_id;
+    public String getJob() {
+        return job;
     }
 
-    public void setJob_id(String job_id) {
-        this.job_id = job_id;
+    public void setJob(String job_id) {
+        this.job = job_id;
     }
 
     public Date getHireDate() {
@@ -123,7 +123,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" + "id=" + id + ", manager_id=" + manager_id + ", department_id=" + department_id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", phone=" + phone + ", job_id=" + job_id + ", hireDate=" + hireDate + ", salary=" + salary + ", commisionPct=" + commisionPct + '}';
+        return "Employee{" + "id=" + id + ", manager_id=" + manager_id + ", department_id=" + department + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", phone=" + phone + ", job_id=" + job + ", hireDate=" + hireDate + ", salary=" + salary + ", commisionPct=" + commisionPct + '}';
     }
     
     

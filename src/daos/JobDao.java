@@ -81,8 +81,8 @@ public class JobDao implements DAOInterface<Job, String>{
             }
 
             preparedStatement.setString(1, job.getTitle());
-            preparedStatement.setDouble(2, job.getMin_salary());
-            preparedStatement.setDouble(3, job.getMax_salary());
+            preparedStatement.setDouble(2, job.getMinSalary());
+            preparedStatement.setDouble(3, job.getMaxsalary());
             preparedStatement.setString(4, job.getId());
             preparedStatement.execute();
             return true;

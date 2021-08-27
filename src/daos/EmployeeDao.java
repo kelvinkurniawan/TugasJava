@@ -111,11 +111,11 @@ public class EmployeeDao implements DAOInterface<Employee, Integer>{
             preparedStatement.setString(3, employee.getEmail());
             preparedStatement.setString(4, employee.getPhone());
             preparedStatement.setDate(5, employee.getHireDate());
-            preparedStatement.setString(6, employee.getJob_id());
+            preparedStatement.setString(6, employee.getJob());
             preparedStatement.setDouble(7, employee.getSalary());
             preparedStatement.setDouble(8, employee.getCommisionPct());
-            preparedStatement.setInt(9, employee.getManager_id());
-            preparedStatement.setInt(10, employee.getDepartment_id());
+            preparedStatement.setInt(9, employee.getManager());
+            preparedStatement.setInt(10, employee.getDepartment());
             preparedStatement.setInt(11, employee.getId());
             preparedStatement.execute();
             return true;

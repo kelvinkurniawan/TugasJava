@@ -10,13 +10,13 @@ package models;
  * @author kelvi
  */
 public class Department {
-    private int id, manager, location_id;
+    private int id, manager, location;
     private String name;
 
     public Department(int id, String name, int manager_id, int location_id) {
         this.id = id;
         this.manager = manager_id;
-        this.location_id = location_id;
+        this.location = location_id;
         this.name = name;
     }
 
@@ -28,20 +28,20 @@ public class Department {
         this.id = id;
     }
 
-    public int getManager_id() {
+    public int getManager() {
         return manager;
     }
 
-    public void setManager_id(int manager_id) {
+    public void setManager(int manager_id) {
         this.manager = manager_id;
     }
 
-    public int getLocation_id() {
-        return location_id;
+    public int getLocation() {
+        return location;
     }
 
-    public void setLocation_id(int location_id) {
-        this.location_id = location_id;
+    public void setLocation(int location_id) {
+        this.location = location_id;
     }
 
     public String getName() {
@@ -54,6 +54,6 @@ public class Department {
 
     @Override
     public String toString() {
-        return "Department{" + "id=" + id + ", manager_id=" + manager + ", location_id=" + location_id + ", name=" + name + '}';
+        return "Department{" + "id=" + id + ", manager_id=" + manager + ", location_id=" + location + ", name=" + name + '}';
     }
 }
