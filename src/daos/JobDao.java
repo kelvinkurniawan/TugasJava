@@ -4,82 +4,86 @@
  * and open the template in the editor.
  */
 package daos;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import models.Region;
+import models.Job;
 import tools.Query;
 
 /**
  *
  * @author kelvi
  */
-public class RegionDAO implements DAOInterface<Region, Integer>{
+public class JobDao implements DAOInterface<Job, String>{
+    
     private final Connection connection;
     
-    public RegionDAO(Connection connection){
+    public JobDao(Connection connection){
         this.connection = connection;
     }
 
     @Override
-    public List<Region> getAll() {
-        List<Region> regions = new ArrayList<>();
+    public List<Job> getAll() {
+        List<Job> jobs = new ArrayList<>();
         
         try {
             ResultSet resultSet = connection
-                    .prepareStatement(Query.GET_REGION.getDisplayQuery())
+                    .prepareStatement(Query.GET_JOB.getDisplayQuery())
                     .executeQuery();    
             
             System.out.println(resultSet);
             
             while(resultSet.next()) {
-                Region region = new Region();
-                regions.add(new Region(resultSet.getInt(1), resultSet.getString(2)));
+                Job job = new Job();
+                jobs.add(new Job(resultSet.getString(1), resultSet.getString(2), resultSet.getDouble(3), resultSet.getDouble(4)));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         
-        return regions;
+        return jobs;
     }
 
     @Override
-    public Region getById(Integer id) {
-        Region region = null;
-
+    public Job getById(String id) {
+        Job job = null;
+        
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(Query.GET_BY_ID_REGION.getDisplayQuery());
-            preparedStatement.setInt(1, id);
+            PreparedStatement preparedStatement = connection.prepareStatement(Query.GET_BY_ID_JOB.getDisplayQuery());
+            preparedStatement.setString(1, id);
+            
             ResultSet resultSet = preparedStatement.executeQuery();
-
+            
+            
             while(resultSet.next()) {
-                region = new Region(resultSet.getInt(1), resultSet.getString(2));
+                job = new Job(resultSet.getString(1), resultSet.getString(2), resultSet.getDouble(3), resultSet.getDouble(4));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-
-        return region;
+        
+        return job;
     }
 
     @Override
-    public boolean save(Region region) {
+    public boolean save(Job job) {
         try {
             PreparedStatement preparedStatement;
-            if(getById(region.getId()) != null){
-                preparedStatement = connection.prepareStatement(Query.UPDATE_REGION.getDisplayQuery());
+            if(getById(job.getId()) != null){
+                preparedStatement = connection.prepareStatement(Query.UPDATE_JOB.getDisplayQuery());
                 System.out.println("Updating..");
             }else{
-                preparedStatement = connection.prepareStatement(Query.INSERT_REGION.getDisplayQuery());
+                preparedStatement = connection.prepareStatement(Query.INSERT_JOB.getDisplayQuery());
                 System.out.println("Inserting..");
             }
 
-            preparedStatement.setString(1, region.getName());
-            preparedStatement.setInt(2, region.getId());
+            preparedStatement.setString(1, job.getTitle());
+            preparedStatement.setDouble(2, job.getMin_salary());
+            preparedStatement.setDouble(3, job.getMax_salary());
+            preparedStatement.setString(4, job.getId());
             preparedStatement.execute();
             return true;
         } catch (SQLException e) {
@@ -89,10 +93,10 @@ public class RegionDAO implements DAOInterface<Region, Integer>{
     }
 
     @Override
-    public boolean delete(Integer id) {
+    public boolean delete(String id) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(Query.DELETE_REGION.getDisplayQuery());
-            preparedStatement.setInt(1, id);
+            PreparedStatement preparedStatement = connection.prepareStatement(Query.DELETE_JOB.getDisplayQuery());
+            preparedStatement.setString(1, id);
             preparedStatement.execute();
             return true;
         } catch (SQLException e) {
@@ -101,6 +105,5 @@ public class RegionDAO implements DAOInterface<Region, Integer>{
 
         return false;
     }
-    
     
 }

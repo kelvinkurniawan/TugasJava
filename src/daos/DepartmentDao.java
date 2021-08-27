@@ -17,10 +17,10 @@ import tools.Query;
  *
  * @author kelvi
  */
-public class DepartmentDAO implements DAOInterface<Department, Integer>{
+public class DepartmentDao implements DAOInterface<Department, Integer>{
     private final Connection connection;
     
-    public DepartmentDAO(Connection connection){
+    public DepartmentDao(Connection connection){
         this.connection = connection;
     }
 
