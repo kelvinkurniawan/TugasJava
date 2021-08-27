@@ -5,8 +5,10 @@
  */
 package tools;
 
+import daos.DepartmentDAO;
 import daos.JobDAO;
 import daos.RegionDAO;
+import models.Department;
 import models.Job;
 import models.Region;
 
@@ -24,7 +26,11 @@ public class TugasJava {
 
         
         DBConnection dbc = new DBConnection();
+        DepartmentDAO ddao = new DepartmentDAO(dbc.getConnection());
         
+        String result = ddao.save(new Department(1, "Communication", 200, 1700)) ? "Success" : "Failed";
+        
+        System.out.println(result);
 
     }
     
