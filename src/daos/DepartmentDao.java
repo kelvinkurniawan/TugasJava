@@ -24,6 +24,10 @@ public class DepartmentDao implements DAOInterface<Department, Integer>{
         this.connection = connection;
     }
 
+    /**
+     *
+     * @return List of department
+     */
     @Override
     public List<Department> getAll() {
         List<Department> departments = new ArrayList<>();
@@ -45,6 +49,11 @@ public class DepartmentDao implements DAOInterface<Department, Integer>{
         return departments;
     }
 
+    /**
+     *
+     * @param id is key identifier of the Department object
+     * @return single row of department
+     */
     @Override
     public Department getById(Integer id) {
         Department department = null;
@@ -64,6 +73,11 @@ public class DepartmentDao implements DAOInterface<Department, Integer>{
         return department;
     }
 
+    /**
+     *
+     * @param department is an object of department
+     * @return is boolean, true when department saved or updated, and false when failed to saved or update
+     */
     @Override
     public boolean save(Department department) {
         try {
@@ -88,6 +102,11 @@ public class DepartmentDao implements DAOInterface<Department, Integer>{
         return false;
     }
 
+    /**
+     *
+     * @param id is key identifier of the Department object
+     * @return is boolean true when object deleted, and false when cannot delete the object
+     */
     @Override
     public boolean delete(Integer id) {
         try {
