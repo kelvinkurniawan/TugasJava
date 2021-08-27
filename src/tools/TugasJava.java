@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package tools;
-import tools.
+
+import daos.RegionDAO;
+import models.Region;
 
 /**
  *
@@ -17,6 +19,12 @@ public class TugasJava {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        DBConnection dbc = new DBConnection();
+        
+        RegionDAO rdao = new RegionDAO(dbc.getConnection());
+        
+        System.out.println(rdao.getById(1));
         
         
     }
