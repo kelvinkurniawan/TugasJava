@@ -5,29 +5,17 @@
  */
 package controllers;
 
-import daos.DAOInterface;
-import java.util.List;
+import tools.DBConnection;
 
 /**
  *
  * @author kelvi
- * @param <T>
- * @param <K>
  */
-public abstract class BaseController<T, K> implements DAOInterface<T, K>{
-    public List<T> findAll(){
-        return getAll();
+public class BaseController {
+    DBConnection dbc;
+    
+    public BaseController(){
+        this.dbc = new DBConnection();
     }
     
-    public T getOne(K id){
-        return getById(id);
-    }
-    
-    public boolean remove(K id){
-        return delete(id);
-    }
-    
-    public boolean insertOrDelete(T t){
-        return save(t);
-    }
 }

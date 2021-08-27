@@ -6,13 +6,6 @@
 package tools;
 
 import controllers.HomeController;
-import daos.EmployeeDao;
-import daos.JobDao;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-import models.Employee;
 
 /**
  *
@@ -23,7 +16,7 @@ public class TugasJava {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) {
         // TODO code application logic here
         
         new HomeController().start();

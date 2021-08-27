@@ -8,6 +8,7 @@ package controllers;
 import java.util.Scanner;
 import views.EmployeeView;
 import views.Homepage;
+import views.RegionView;
 
 /**
  *
@@ -28,6 +29,10 @@ public class HomeController {
                 EmployeeView employeeView = new EmployeeView();
                 employeeView.display();
             break;
+            case 4:
+                RegionView regionView = new RegionView();
+                regionView.display();
+                        
         }
     }
 }

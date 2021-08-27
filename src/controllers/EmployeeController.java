@@ -8,19 +8,16 @@ package controllers;
 import daos.EmployeeDao;
 import java.util.List;
 import models.Employee;
-import tools.DBConnection;
 
 /**
  *
  * @author kelvi
  */
-public class EmployeeController {
+public class EmployeeController extends BaseController{
     
-    DBConnection dbc;
     EmployeeDao employeeDao;
     
     public EmployeeController(){
-        this.dbc = new DBConnection();
         this.employeeDao = new EmployeeDao(dbc.getConnection());
     }
     

@@ -46,7 +46,7 @@ public class EmployeeView {
                 this.showEmployee();
                 break;
             case 3:
-                this.showEmployee();
+                this.showAllEmployee();
                 break;
             case 0:
                 new HomeController().start();
@@ -60,6 +60,7 @@ public class EmployeeView {
         
         
         System.out.println("=============================");
+        
         if(type == 1){
             System.out.print("Employee ID : ");
             employee.setId(scanner.nextInt());
@@ -67,6 +68,7 @@ public class EmployeeView {
             System.out.println("Employee ID : " + empId);
             employee.setId(empId);
         }
+        
         System.out.print("First Name : ");
         employee.setFirstName(scanner.next());
         System.out.print("Last Name : ");
@@ -134,7 +136,7 @@ public class EmployeeView {
                     formEmployee(2);
                     break;
                 case 2:
-                    employeeController.delete(empId);
+                    employeeController.delete(employee.getId());
                     System.out.println("Employee Deleted!");
                     System.out.println("====================================");
                     this.display();
@@ -151,5 +153,24 @@ public class EmployeeView {
     }
     
     public void showAllEmployee(){
+        for (Employee employee : employeeController.getAll()) {
+            System.out.println("Employee ID : " + employee.getId());
+            System.out.println("First Name : " + employee.getFirstName());
+            System.out.println("Last Name : " + employee.getLastName());
+            System.out.println("Email : " + employee.getEmail());
+            System.out.println("Phone : " + employee.getPhone());
+            System.out.println("Hire Date : " + employee.getHireDate());
+            System.out.println("Job : " + employee.getJob());
+            System.out.println("Salary : " + employee.getSalary());
+            System.out.println("Commission pct : " + employee.getCommisionPct());
+            System.out.println("Manager : " + employee.getManager());
+            System.out.println("Department : " + employee.getDepartment());
+            System.out.println("=================================");
+        }
+        System.out.println("0. Back");
+        System.out.print("your choice : ");
+        if(scanner.nextInt() == 0){
+            this.display();
+        }
     }
 }
