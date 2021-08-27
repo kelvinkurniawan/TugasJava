@@ -26,13 +26,14 @@ public class HomeController {
     public void setMenu(int option){
         switch(option){
             case 1:
-                EmployeeView employeeView = new EmployeeView();
-                employeeView.display();
-            break;
+                new EmployeeController().display();
+                break;
+            case 3:
+                new JobController().display();
+                break;
             case 4:
-                RegionView regionView = new RegionView();
-                regionView.display();
-                        
+                new RegionController().display();
+                break;
         }
     }
 }

@@ -14,15 +14,10 @@ import models.Region;
  *
  * @author kelvi
  */
-public class RegionView {
-    Scanner scanner = new Scanner(System.in);
-    RegionController regionController;
+public class RegionView implements BaseView{
     int regionId;
-    
-    public RegionView(){
-        this.regionController = new RegionController();
-    }
-    
+
+    @Override
     public void display(){
         int option = 0;
         System.out.println("Showing menu under Region");
@@ -38,21 +33,22 @@ public class RegionView {
         
         switch(option){
             case 1:
-                formRegion(1);
+                new RegionController().form(1);
                 break;
             case 2:
-                showRegion();
+                new RegionController().showSingle();
                 break;
             case 3:
-                showAllRegion();
+                new RegionController().showAll();
                 break;
             case 0:
                 new HomeController().start();
                         
         }
     }
-    
-    public void formRegion(int type){
+
+    @Override
+    public void form(int type){
         
         Region region = new Region();
         System.out.println("=============================");
@@ -69,15 +65,16 @@ public class RegionView {
         region.setName(scanner.nextLine());
         System.out.println("================================");
         
-        String result = regionController.save(region) ? "Succesfully" : "Failed";
+        String result = new RegionController().save(region) ? "Succesfully" : "Failed";
         System.out.println(result);
         
         System.out.println("================================");
         
         this.display();
     }
-    
-    public void showRegion(){
+
+    @Override
+    public void show(){
         
         System.out.print("Enter Region ID : ");
         regionId = scanner.nextInt();
@@ -85,7 +82,7 @@ public class RegionView {
         System.out.println("Searching..");
         System.out.println();
         
-        Region region = regionController.getById(regionId);
+        Region region = new RegionController().getById(regionId);
         
         if(region != null){
             System.out.println("Region ID : " + region.getId());
@@ -100,10 +97,10 @@ public class RegionView {
             System.out.println("=================================");
             switch(option){
                 case 1:
-                    formRegion(2);
+                    this.form(2);
                     break;
                 case 2:
-                    regionController.delete(region.getId());
+                    new RegionController().delete(region.getId());
                     System.out.println("Region Deleted!");
                     System.out.println("====================================");
                     this.display();
@@ -118,9 +115,10 @@ public class RegionView {
             System.out.println("Sorry Region with id " +region.getId()+ " not found!");
         }
     }
-    
-    public void showAllRegion(){
-        for (Region region : regionController.getAll()) {
+
+    @Override
+    public void showAll(){
+        for (Region region : new RegionController().getAll()) {
             System.out.println("Region ID : " + region.getId());
             System.out.println("Region name : " + region.getName());
             System.out.println("=================================");
