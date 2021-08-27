@@ -5,6 +5,9 @@
  */
 package tools;
 
+import daos.RegionDAO;
+import models.Region;
+
 /**
  *
  * @author kelvi
@@ -16,8 +19,14 @@ public class TugasJava {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+
         DBConnection dBConnection = new DBConnection();
         System.out.println(dBConnection.getConnection()+"test");
+
+        RegionDAO rdao = new RegionDAO(dBConnection.getConnection());
+
+        System.out.print(rdao.getById(11103));
+
     }
     
 }
