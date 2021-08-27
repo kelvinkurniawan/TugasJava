@@ -5,6 +5,7 @@
  */
 package tools;
 
+import controllers.HomeController;
 import daos.EmployeeDao;
 import daos.JobDao;
 import java.text.ParseException;
@@ -24,13 +25,8 @@ public class TugasJava {
      */
     public static void main(String[] args) throws ParseException {
         // TODO code application logic here
-
         
-        DBConnection dbc = new DBConnection();
-        
-        JobDao jd = new JobDao(dbc.getConnection());
-        
-        System.out.println(jd.getById("AC_ACCOUNT"));
+        new HomeController().start();
 
     }
     
