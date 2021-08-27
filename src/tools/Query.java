@@ -13,7 +13,7 @@ public enum Query {
 
 //    REGION
     GET_REGION("SELECT * FROM regions"),
-    GET_BY_ID_REGION("SELECT * FROM region WHERE id = ?"),
+    GET_BY_ID_REGION("SELECT * FROM regions WHERE region_id = ?"),
     UPDATE_REGION("UPDATE regions SET region_name = ? WHERE region_id = ?"),
     DELETE_REGION("DELETE FROM regions WHERE region_id = ?"),
     INSERT_REGION("INSERT INTO regions(region_name, region_id) VALUES (?, ?)"),
