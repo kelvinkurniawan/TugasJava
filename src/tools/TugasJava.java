@@ -24,8 +24,8 @@ public class TugasJava {
         
         RegionDAO rdao = new RegionDAO(dbc.getConnection());
         
-        System.out.println(rdao.getById(1));
-        
+        String result = rdao.save(new Region(5, "Indonesia")) ? "Success" : "Failed";
+        System.out.println(result);
         
     }
     

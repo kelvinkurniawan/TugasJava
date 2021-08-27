@@ -19,7 +19,7 @@ import tools.Query;
  * @author kelvi
  */
 public class RegionDAO implements DAOInterface<Region, Integer>{
-    private Connection connection;
+    private final Connection connection;
     
     public RegionDAO(Connection connection){
         this.connection = connection;
@@ -59,8 +59,8 @@ public class RegionDAO implements DAOInterface<Region, Integer>{
             while(resultSet.next()) {
                 region = new Region(resultSet.getInt(1), resultSet.getString(2));
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
 
         return region;
@@ -82,9 +82,10 @@ public class RegionDAO implements DAOInterface<Region, Integer>{
             preparedStatement.setString(1, region.getName());
             preparedStatement.setInt(2, region.getId());
 
+            preparedStatement.execute();
             return true;
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
         return false;
     }
@@ -96,8 +97,8 @@ public class RegionDAO implements DAOInterface<Region, Integer>{
             preparedStatement.setInt(1, id);
             preparedStatement.execute();
             return true;
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
 
         return false;
