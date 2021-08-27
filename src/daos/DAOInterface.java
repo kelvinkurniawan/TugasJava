@@ -13,11 +13,11 @@ import java.util.List;
  * @param <Object>
  * @param <Key>
  */
-public interface DAOInterface <Object, Key> {
+public interface DAOInterface <T, Key> {
     
-    public List<Object> getAll();
+    public List<T> getAll();
     public Object getById(Key id);
-    public boolean save(Object object);
+    public boolean save(T object);
     public boolean delete(Key id);
     
 }
