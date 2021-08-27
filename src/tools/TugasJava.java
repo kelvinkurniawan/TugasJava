@@ -5,7 +5,9 @@
  */
 package tools;
 
+import daos.JobDAO;
 import daos.RegionDAO;
+import models.Job;
 import models.Region;
 
 /**
@@ -23,10 +25,12 @@ public class TugasJava {
         
         DBConnection dbc = new DBConnection();
         
-        RegionDAO rdao = new RegionDAO(dbc.getConnection());
+        JobDAO jDao = new JobDAO(dbc.getConnection());
         
-        String result = rdao.save(new Region(5, "Brunei")) ? "Success" : "Failed";
-        System.out.println(result);
+        for (Job job : jDao.getAll()) {
+            System.out.println(job);
+        }
+        
         
 
     }
