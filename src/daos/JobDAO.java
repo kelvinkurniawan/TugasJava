@@ -5,6 +5,7 @@
  */
 package daos;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -52,7 +53,7 @@ public class JobDAO implements DAOInterface<Job, String>{
         
         try {
             ResultSet resultSet = connection
-                    .prepareStatement(Query.GET_JOB.getDisplayQuery())
+                    .prepareStatement(Query.GET_BY_ID_JOB.getDisplayQuery())
                     .executeQuery();    
             
             System.out.println(resultSet);
@@ -68,13 +69,41 @@ public class JobDAO implements DAOInterface<Job, String>{
     }
 
     @Override
-    public boolean save(Job object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean save(Job job) {
+        try {
+            PreparedStatement preparedStatement;
+            if(getById(job.getId()) != null){
+                preparedStatement = connection.prepareStatement(Query.UPDATE_JOB.getDisplayQuery());
+                System.out.println("Updating..");
+            }else{
+                preparedStatement = connection.prepareStatement(Query.INSERT_JOB.getDisplayQuery());
+                System.out.println("Inserting..");
+            }
+
+            preparedStatement.setString(1, job.getTitle());
+            preparedStatement.setDouble(2, job.getMin_salary());
+            preparedStatement.setDouble(3, job.getMax_salary());
+            preparedStatement.setString(4, job.getId());
+            preparedStatement.execute();
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
     }
 
     @Override
     public boolean delete(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(Query.DELETE_JOB.getDisplayQuery());
+            preparedStatement.setString(1, id);
+            preparedStatement.execute();
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return false;
     }
     
 }

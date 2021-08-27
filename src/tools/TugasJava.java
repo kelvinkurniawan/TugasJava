@@ -25,13 +25,6 @@ public class TugasJava {
         
         DBConnection dbc = new DBConnection();
         
-        JobDAO jDao = new JobDAO(dbc.getConnection());
-        
-        for (Job job : jDao.getAll()) {
-            System.out.println(job);
-        }
-        
-        
 
     }
     
