@@ -11,18 +11,18 @@ package models;
  */
 public class Job {
     private String id, title;
-    private double min_salary, max_salary;
+    private double minSalary, maxSalary;
 
     public Job(String id, String title, double min_salary, double max_salary) {
         this.id = id;
         this.title = title;
-        this.min_salary = min_salary;
-        this.max_salary = max_salary;
+        this.minSalary = min_salary;
+        this.maxSalary = max_salary;
     }
 
     @Override
     public String toString() {
-        return "Job{" + "id=" + id + ", title=" + title + ", min_salary=" + min_salary + ", max_salary=" + max_salary + '}';
+        return "Job{" + "id=" + id + ", title=" + title + ", min_salary=" + minSalary + ", max_salary=" + maxSalary + '}';
     }
 
     public Job() {
@@ -44,19 +44,19 @@ public class Job {
         this.title = title;
     }
 
-    public double getMin_salary() {
-        return min_salary;
+    public double getMinSalary() {
+        return minSalary;
     }
 
-    public void setMin_salary(double min_salary) {
-        this.min_salary = min_salary;
+    public void setMinSalary(double min_salary) {
+        this.minSalary = min_salary;
     }
 
-    public double getMax_salary() {
-        return max_salary;
+    public double getMaxsalary() {
+        return maxSalary;
     }
 
-    public void setMax_salary(double max_salary) {
-        this.max_salary = max_salary;
+    public void setMaxSalary(double max_salary) {
+        this.maxSalary = max_salary;
     }
 }

@@ -4,82 +4,82 @@
  * and open the template in the editor.
  */
 package daos;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import models.Region;
+import models.Department;
 import tools.Query;
 
 /**
  *
  * @author kelvi
  */
-public class RegionDAO implements DAOInterface<Region, Integer>{
+public class DepartmentDao implements DAOInterface<Department, Integer>{
     private final Connection connection;
     
-    public RegionDAO(Connection connection){
+    public DepartmentDao(Connection connection){
         this.connection = connection;
     }
 
     @Override
-    public List<Region> getAll() {
-        List<Region> regions = new ArrayList<>();
+    public List<Department> getAll() {
+        List<Department> departments = new ArrayList<>();
         
         try {
             ResultSet resultSet = connection
-                    .prepareStatement(Query.GET_REGION.getDisplayQuery())
+                    .prepareStatement(Query.GET_DEPARTMENT.getDisplayQuery())
                     .executeQuery();    
             
             System.out.println(resultSet);
             
             while(resultSet.next()) {
-                Region region = new Region();
-                regions.add(new Region(resultSet.getInt(1), resultSet.getString(2)));
+                departments.add(new Department(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getInt(4)));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         
-        return regions;
+        return departments;
     }
 
     @Override
-    public Region getById(Integer id) {
-        Region region = null;
+    public Department getById(Integer id) {
+        Department department = null;
 
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(Query.GET_BY_ID_REGION.getDisplayQuery());
+            PreparedStatement preparedStatement = connection.prepareStatement(Query.GET_BY_ID_DEPARTMENT.getDisplayQuery());
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()) {
-                region = new Region(resultSet.getInt(1), resultSet.getString(2));
+                department = new Department(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getInt(4));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
 
-        return region;
+        return department;
     }
 
     @Override
-    public boolean save(Region region) {
+    public boolean save(Department department) {
         try {
             PreparedStatement preparedStatement;
-            if(getById(region.getId()) != null){
-                preparedStatement = connection.prepareStatement(Query.UPDATE_REGION.getDisplayQuery());
+            if(getById(department.getId()) != null){
+                preparedStatement = connection.prepareStatement(Query.UPDATE_DEPARTMENT.getDisplayQuery());
                 System.out.println("Updating..");
             }else{
-                preparedStatement = connection.prepareStatement(Query.INSERT_REGION.getDisplayQuery());
+                preparedStatement = connection.prepareStatement(Query.INSERT_DEPARTMENT.getDisplayQuery());
                 System.out.println("Inserting..");
             }
 
-            preparedStatement.setString(1, region.getName());
-            preparedStatement.setInt(2, region.getId());
+            preparedStatement.setString(1, department.getName());
+            preparedStatement.setInt(2, department.getManager());
+            preparedStatement.setInt(3, department.getLocation());
+            preparedStatement.setInt(4, department.getId());
             preparedStatement.execute();
             return true;
         } catch (SQLException e) {
@@ -91,7 +91,7 @@ public class RegionDAO implements DAOInterface<Region, Integer>{
     @Override
     public boolean delete(Integer id) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(Query.DELETE_REGION.getDisplayQuery());
+            PreparedStatement preparedStatement = connection.prepareStatement(Query.DELETE_DEPARTMENT.getDisplayQuery());
             preparedStatement.setInt(1, id);
             preparedStatement.execute();
             return true;
@@ -101,6 +101,5 @@ public class RegionDAO implements DAOInterface<Region, Integer>{
 
         return false;
     }
-    
     
 }

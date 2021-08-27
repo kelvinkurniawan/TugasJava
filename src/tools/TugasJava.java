@@ -5,10 +5,13 @@
  */
 package tools;
 
-import daos.JobDAO;
-import daos.RegionDAO;
-import models.Job;
-import models.Region;
+import daos.EmployeeDao;
+import daos.JobDao;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import models.Employee;
 
 /**
  *
@@ -19,19 +22,15 @@ public class TugasJava {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         // TODO code application logic here
 
         
         DBConnection dbc = new DBConnection();
         
-        JobDAO jDao = new JobDAO(dbc.getConnection());
+        JobDao jd = new JobDao(dbc.getConnection());
         
-        for (Job job : jDao.getAll()) {
-            System.out.println(job);
-        }
-        
-        
+        System.out.println(jd.getById("AC_ACCOUNT"));
 
     }
     

@@ -5,6 +5,7 @@
  */
 package daos;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,11 +17,11 @@ import tools.Query;
  *
  * @author kelvi
  */
-public class JobDAO implements DAOInterface<Job, String>{
+public class JobDao implements DAOInterface<Job, String>{
     
     private final Connection connection;
     
-    public JobDAO(Connection connection){
+    public JobDao(Connection connection){
         this.connection = connection;
     }
 
@@ -51,11 +52,11 @@ public class JobDAO implements DAOInterface<Job, String>{
         Job job = null;
         
         try {
-            ResultSet resultSet = connection
-                    .prepareStatement(Query.GET_JOB.getDisplayQuery())
-                    .executeQuery();    
+            PreparedStatement preparedStatement = connection.prepareStatement(Query.GET_BY_ID_JOB.getDisplayQuery());
+            preparedStatement.setString(1, id);
             
-            System.out.println(resultSet);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            
             
             while(resultSet.next()) {
                 job = new Job(resultSet.getString(1), resultSet.getString(2), resultSet.getDouble(3), resultSet.getDouble(4));
@@ -68,13 +69,41 @@ public class JobDAO implements DAOInterface<Job, String>{
     }
 
     @Override
-    public boolean save(Job object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean save(Job job) {
+        try {
+            PreparedStatement preparedStatement;
+            if(getById(job.getId()) != null){
+                preparedStatement = connection.prepareStatement(Query.UPDATE_JOB.getDisplayQuery());
+                System.out.println("Updating..");
+            }else{
+                preparedStatement = connection.prepareStatement(Query.INSERT_JOB.getDisplayQuery());
+                System.out.println("Inserting..");
+            }
+
+            preparedStatement.setString(1, job.getTitle());
+            preparedStatement.setDouble(2, job.getMinSalary());
+            preparedStatement.setDouble(3, job.getMaxsalary());
+            preparedStatement.setString(4, job.getId());
+            preparedStatement.execute();
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
     }
 
     @Override
     public boolean delete(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(Query.DELETE_JOB.getDisplayQuery());
+            preparedStatement.setString(1, id);
+            preparedStatement.execute();
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return false;
     }
     
 }
