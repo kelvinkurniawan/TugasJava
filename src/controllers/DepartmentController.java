@@ -5,7 +5,9 @@
  */
 package controllers;
 
+import daos.DepartmentDao;
 import models.Department;
+import views.DepartmentView;
 
 import java.util.List;
 
@@ -15,43 +17,51 @@ import java.util.List;
  */
 public class DepartmentController extends BaseController<Department, Integer>{
 
+    DepartmentDao departmentDao;
+    DepartmentView departmentView;
+
+    public DepartmentController(){
+        departmentDao = new DepartmentDao(dbc.getConnection());
+        departmentView = new DepartmentView();
+    }
+
     @Override
     public List<Department> getAll() {
-        return null;
+        return departmentDao.getAll();
     }
 
     @Override
     public Department getById(Integer id) {
-        return null;
+        return departmentDao.getById(id);
     }
 
     @Override
-    public boolean save(Department object) {
-        return false;
+    public boolean save(Department department) {
+        return departmentDao.save(department);
     }
 
     @Override
     public boolean delete(Integer id) {
-        return false;
+        return departmentDao.delete(id);
     }
 
     @Override
     public void display() {
-
+        departmentView.display();
     }
 
     @Override
     public void form(int type) {
-
+        departmentView.form(type);
     }
 
     @Override
     public void showSingle() {
-
+        departmentView.show();
     }
 
     @Override
     public void showAll() {
-
+        departmentView.showAll();
     }
 }

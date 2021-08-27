@@ -28,6 +28,9 @@ public class HomeController {
             case 1:
                 new EmployeeController().display();
                 break;
+            case 2:
+                new DepartmentController().display();
+                break;
             case 3:
                 new JobController().display();
                 break;

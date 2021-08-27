@@ -2,9 +2,7 @@ package views;
 
 import controllers.HomeController;
 import controllers.JobController;
-import controllers.RegionController;
 import models.Job;
-import models.Region;
 
 public class JobView implements BaseView{
     String jobId;
@@ -109,7 +107,7 @@ public class JobView implements BaseView{
                     this.display();
             }
         }else{
-            System.out.println("Sorry Job with id " +job.getId()+ " not found!");
+            System.out.println("Sorry Job with id " +jobId+ " not found!");
         }
     }
 
