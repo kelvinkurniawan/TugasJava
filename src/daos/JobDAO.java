@@ -30,7 +30,7 @@ public class JobDAO implements DAOInterface<Job, String>{
         
         try {
             ResultSet resultSet = connection
-                    .prepareStatement(Query.GET_REGION.getDisplayQuery())
+                    .prepareStatement(Query.GET_JOB.getDisplayQuery())
                     .executeQuery();    
             
             System.out.println(resultSet);
@@ -47,8 +47,24 @@ public class JobDAO implements DAOInterface<Job, String>{
     }
 
     @Override
-    public Object getById(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Job getById(String id) {
+        Job job = null;
+        
+        try {
+            ResultSet resultSet = connection
+                    .prepareStatement(Query.GET_JOB.getDisplayQuery())
+                    .executeQuery();    
+            
+            System.out.println(resultSet);
+            
+            while(resultSet.next()) {
+                job = new Job(resultSet.getString(1), resultSet.getString(2), resultSet.getDouble(3), resultSet.getDouble(4));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        return job;
     }
 
     @Override

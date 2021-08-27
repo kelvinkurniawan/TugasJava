@@ -70,7 +70,6 @@ public class RegionDAO implements DAOInterface<Region, Integer>{
     public boolean save(Region region) {
         try {
             PreparedStatement preparedStatement;
-
             if(getById(region.getId()) != null){
                 preparedStatement = connection.prepareStatement(Query.UPDATE_REGION.getDisplayQuery());
                 System.out.println("Updating..");
@@ -81,7 +80,6 @@ public class RegionDAO implements DAOInterface<Region, Integer>{
 
             preparedStatement.setString(1, region.getName());
             preparedStatement.setInt(2, region.getId());
-
             preparedStatement.execute();
             return true;
         } catch (SQLException e) {

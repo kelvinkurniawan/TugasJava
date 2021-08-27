@@ -19,8 +19,8 @@ public class DBConnection {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
+//            Class.forName("com.mysql.cj.jdbc.Driver");
             this.con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hr?zeroDateTimeBehavior=convertToNull", "root", "");
-
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e.getMessage());
         }

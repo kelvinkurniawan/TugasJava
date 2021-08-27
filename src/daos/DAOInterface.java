@@ -16,7 +16,7 @@ import java.util.List;
 public interface DAOInterface <T, Key> {
     
     public List<T> getAll();
-    public Object getById(Key id);
+    public T getById(Key id);
     public boolean save(T object);
     public boolean delete(Key id);
     
