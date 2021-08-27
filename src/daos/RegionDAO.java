@@ -8,6 +8,8 @@ package daos;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import models.Region;
 import tools.Query;
@@ -17,7 +19,7 @@ import tools.Query;
  * @author kelvi
  */
 public class RegionDAO implements DAOInterface<Region, Integer>{
-    private Connection connection;
+    private final Connection connection;
     
     public RegionDAO(Connection connection){
         this.connection = connection;
@@ -25,7 +27,24 @@ public class RegionDAO implements DAOInterface<Region, Integer>{
 
     @Override
     public List<Region> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Region> regions = new ArrayList<>();
+        
+        try {
+            ResultSet resultSet = connection
+                    .prepareStatement(Query.GET_REGION.getDisplayQuery())
+                    .executeQuery();    
+            
+            System.out.println(resultSet);
+            
+            while(resultSet.next()) {
+                Region region = new Region();
+                regions.add(new Region(resultSet.getInt(1), resultSet.getString(2)));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        return regions;
     }
 
     @Override
@@ -33,29 +52,56 @@ public class RegionDAO implements DAOInterface<Region, Integer>{
         Region region = null;
 
         try {
-            PreparedStatement preparedStatement = connection
-                    .prepareStatement(Query.GET_BY_ID_REGION.getDisplayQuery());
+            PreparedStatement preparedStatement = connection.prepareStatement(Query.GET_BY_ID_REGION.getDisplayQuery());
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()) {
                 region = new Region(resultSet.getInt(1), resultSet.getString(2));
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
 
         return region;
     }
 
     @Override
-    public boolean save(Region object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean save(Region region) {
+        try {
+            PreparedStatement preparedStatement;
+
+            if(getById(region.getId()) != null){
+                preparedStatement = connection.prepareStatement(Query.UPDATE_REGION.getDisplayQuery());
+                System.out.println("Updating..");
+            }else{
+                preparedStatement = connection.prepareStatement(Query.INSERT_REGION.getDisplayQuery());
+                System.out.println("Inserting..");
+            }
+
+            preparedStatement.setString(1, region.getName());
+            preparedStatement.setInt(2, region.getId());
+
+            preparedStatement.execute();
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
     }
 
     @Override
     public boolean delete(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(Query.DELETE_REGION.getDisplayQuery());
+            preparedStatement.setInt(1, id);
+            preparedStatement.execute();
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return false;
     }
     
     

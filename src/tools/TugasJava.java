@@ -20,12 +20,14 @@ public class TugasJava {
     public static void main(String[] args) {
         // TODO code application logic here
 
-        DBConnection dBConnection = new DBConnection();
-        System.out.println(dBConnection.getConnection()+"test");
-
-        RegionDAO rdao = new RegionDAO(dBConnection.getConnection());
-
-        System.out.print(rdao.getById(11103));
+        
+        DBConnection dbc = new DBConnection();
+        
+        RegionDAO rdao = new RegionDAO(dbc.getConnection());
+        
+        String result = rdao.save(new Region(5, "Indonesia")) ? "Success" : "Failed";
+        System.out.println(result);
+        
 
     }
     

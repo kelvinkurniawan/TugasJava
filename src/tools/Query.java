@@ -11,12 +11,18 @@ package tools;
  */
 public enum Query {
 
+//    REGION
     GET_REGION("SELECT * FROM regions"),
     GET_BY_ID_REGION("SELECT * FROM region WHERE id = ?"),
     UPDATE_REGION("UPDATE regions SET region_name = ? WHERE region_id = ?"),
     DELETE_REGION("DELETE FROM regions WHERE region_id = ?"),
     INSERT_REGION("INSERT INTO regions(region_name, region_id) VALUES (?, ?)"),
     INSERT_OR_UPDATE_REGION("INSERT INTO regions(region_id, region_name) VALUES (?, ?) ON DUPLICATE KEY UPDATE region_name = ?");
+
+//    JOBS
+
+
+
 
     private final String displayQuery;
 
