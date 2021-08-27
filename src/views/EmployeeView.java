@@ -15,15 +15,10 @@ import models.Employee;
  *
  * @author kelvi
  */
-public class EmployeeView {
+public class EmployeeView{
     
     Scanner scanner = new Scanner(System.in);
-    EmployeeController employeeController;
     int empId;
-    
-    public EmployeeView(){
-        this.employeeController = new EmployeeController();
-    }
         
     public void display(){
         int option = 0;
@@ -40,13 +35,13 @@ public class EmployeeView {
         
         switch(option){
             case 1:
-                this.formEmployee(1);
+                new EmployeeController().form(1);
                 break;
             case 2:
-                this.showEmployee();
+                new EmployeeController().showSingle();
                 break;
             case 3:
-                this.showAllEmployee();
+                new EmployeeController().showAll();
                 break;
             case 0:
                 new HomeController().start();
@@ -92,13 +87,13 @@ public class EmployeeView {
         
         System.out.println("================================");
         
-        String result = employeeController.save(employee) ? "Successfully!" : "Failed!";
+        String result = new EmployeeController().save(employee) ? "Successfully!" : "Failed!";
         
         System.out.println(result);
         
         System.out.println("================================");
-        
-        this.display();
+
+        new EmployeeController().display();
     }
     
     public void showEmployee(){
@@ -108,7 +103,7 @@ public class EmployeeView {
         System.out.println("Searching..");
         System.out.println();
         
-        Employee employee = employeeController.getById(empId);
+        Employee employee = new EmployeeController().getById(empId);
         
         System.out.println("==================================");
         if(employee != null){
@@ -136,7 +131,7 @@ public class EmployeeView {
                     formEmployee(2);
                     break;
                 case 2:
-                    employeeController.delete(employee.getId());
+                    new EmployeeController().delete(employee.getId());
                     System.out.println("Employee Deleted!");
                     System.out.println("====================================");
                     this.display();
@@ -153,7 +148,7 @@ public class EmployeeView {
     }
     
     public void showAllEmployee(){
-        for (Employee employee : employeeController.getAll()) {
+        for (Employee employee : new EmployeeController().getAll()) {
             System.out.println("Employee ID : " + employee.getId());
             System.out.println("First Name : " + employee.getFirstName());
             System.out.println("Last Name : " + employee.getLastName());

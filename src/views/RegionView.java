@@ -16,12 +16,7 @@ import models.Region;
  */
 public class RegionView {
     Scanner scanner = new Scanner(System.in);
-    RegionController regionController;
     int regionId;
-    
-    public RegionView(){
-        this.regionController = new RegionController();
-    }
     
     public void display(){
         int option = 0;
@@ -38,13 +33,13 @@ public class RegionView {
         
         switch(option){
             case 1:
-                formRegion(1);
+                new RegionController().form(1);
                 break;
             case 2:
-                showRegion();
+                new RegionController().showSingle();
                 break;
             case 3:
-                showAllRegion();
+                new RegionController().showAll();
                 break;
             case 0:
                 new HomeController().start();
@@ -69,7 +64,7 @@ public class RegionView {
         region.setName(scanner.nextLine());
         System.out.println("================================");
         
-        String result = regionController.save(region) ? "Succesfully" : "Failed";
+        String result = new RegionController().save(region) ? "Succesfully" : "Failed";
         System.out.println(result);
         
         System.out.println("================================");
@@ -85,7 +80,7 @@ public class RegionView {
         System.out.println("Searching..");
         System.out.println();
         
-        Region region = regionController.getById(regionId);
+        Region region = new RegionController().getById(regionId);
         
         if(region != null){
             System.out.println("Region ID : " + region.getId());
@@ -100,10 +95,10 @@ public class RegionView {
             System.out.println("=================================");
             switch(option){
                 case 1:
-                    formRegion(2);
+                    this.formRegion(2);
                     break;
                 case 2:
-                    regionController.delete(region.getId());
+                    new RegionController().delete(region.getId());
                     System.out.println("Region Deleted!");
                     System.out.println("====================================");
                     this.display();
@@ -120,7 +115,7 @@ public class RegionView {
     }
     
     public void showAllRegion(){
-        for (Region region : regionController.getAll()) {
+        for (Region region : new RegionController().getAll()) {
             System.out.println("Region ID : " + region.getId());
             System.out.println("Region name : " + region.getName());
             System.out.println("=================================");

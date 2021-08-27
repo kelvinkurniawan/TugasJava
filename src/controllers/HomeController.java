@@ -26,8 +26,7 @@ public class HomeController {
     public void setMenu(int option){
         switch(option){
             case 1:
-                EmployeeView employeeView = new EmployeeView();
-                employeeView.display();
+                new EmployeeController().display();
             break;
             case 4:
                 RegionView regionView = new RegionView();
