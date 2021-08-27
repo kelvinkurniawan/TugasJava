@@ -38,7 +38,7 @@ public enum Query {
     GET_BY_ID_EMPLOYEE("SELECT * FROM employees WHERE employee_id = ?"),
     UPDATE_EMPLOYEE("UPDATE employees SET first_name = ?, last_name = ?, email = ?, phone_number = ?, hire_date = ?, job_id = ?, salary = ?, commission_pct = ?, manager_id = ?, department_id = ? WHERE employee_id = ?"),
     INSERT_EMPLOYEE("INSERT INTO employees (first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id, employee_id) VALUES (?,?,?,?,?,?,?,?,?,?,?)"),
-    DELETE_EMPLOYEE("DELETE FROM employee WHERE employee_id = ?")
+    DELETE_EMPLOYEE("DELETE FROM employees WHERE employee_id = ?")
     ;
 
 

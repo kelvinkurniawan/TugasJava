@@ -32,6 +32,8 @@ public class Employee {
         this.salary = salary;
         this.commisionPct = commisionPct;
     }
+    
+    public Employee(){}
 
     public int getId() {
         return id;

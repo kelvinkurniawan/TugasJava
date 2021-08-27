@@ -5,13 +5,7 @@
  */
 package tools;
 
-import daos.EmployeeDao;
-import daos.JobDao;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-import models.Employee;
+import controllers.HomeController;
 
 /**
  *
@@ -22,15 +16,10 @@ public class TugasJava {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) {
         // TODO code application logic here
-
         
-        DBConnection dbc = new DBConnection();
-        
-        JobDao jd = new JobDao(dbc.getConnection());
-        
-        System.out.println(jd.getById("AC_ACCOUNT"));
+        new HomeController().start();
 
     }
     
