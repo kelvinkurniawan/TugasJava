@@ -33,6 +33,12 @@ public class HomeController {
             case 4:
                 new RegionController().display();
                 break;
+            case 5:
+                new CountryController().display();
+                break;
+            case 6:
+                new LocationController().display();
+                break;
         }
     }
 }
