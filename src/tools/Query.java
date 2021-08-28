@@ -52,7 +52,7 @@ public enum Query {
     GET_BY_ID_LOCATIONS("SELECT * FROM locations WHERE location_id = ?"),
     UPDATE_LOCATIONS("UPDATE locations SET street_address = ?, postal_code = ?, city = ?, state_province = ?, country_id = ? WHERE location_id = ?"),
     DELETE_LOCATIONS("DELETE FROM locations WHERE location_id = ?"),
-    INSERT_LOCATIONS("INSERT INTO locations (street_address, postal_code, city, state_province, country_id, location_id) values (?,?,?)")
+    INSERT_LOCATIONS("INSERT INTO locations (street_address, postal_code, city, state_province, country_id, location_id) values (?,?,?,?,?,?)")
     ;
 
 
