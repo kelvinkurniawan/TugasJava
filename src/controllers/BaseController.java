@@ -31,14 +31,14 @@ public abstract class BaseController<T, K> {
 
     /**
      * <p>Abstract to get object by the id</p>
-     * @param id
+     * @param id is identifier of the object
      * @return single row object
      */
     public abstract T getById(K id);
 
     /**
      * <p>Abstract to insert or update object</p>
-     * @param object
+     * @param object is the object
      * @return boolean true when saved, false when failed to save
      */
     public abstract boolean save(T object);

@@ -6,15 +6,14 @@
 package models;
 
 /**
- *
  * @author kelvi
  */
 public class Region {
     private int id;
     private String name;
-    
-    public Region(){
-        
+
+    public Region() {
+
     }
 
     public Region(int id, String name) {
@@ -37,11 +36,11 @@ public class Region {
     public void setName(String name) {
         this.name = name;
     }
-    
+
     @Override
     public String toString() {
         return "Region{" + "id=" + id + ", name=" + name + '}';
     }
 
-    
+
 }

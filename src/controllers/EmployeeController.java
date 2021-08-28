@@ -6,37 +6,41 @@
 package controllers;
 
 import daos.EmployeeDao;
-import java.util.List;
 import models.Employee;
 import views.EmployeeView;
 
+import java.util.List;
+
 /**
- *
  * @author kelvi
  */
-public class EmployeeController extends BaseController<Employee, Integer>{
-    
+public class EmployeeController extends BaseController<Employee, Integer> {
+
     EmployeeDao employeeDao;
     EmployeeView employeeView;
-    
-    public EmployeeController(){
+
+    public EmployeeController() {
         this.employeeDao = new EmployeeDao(dbc.getConnection());
         this.employeeView = new EmployeeView();
     }
 
-    public boolean save(Employee e){
+    @Override
+    public boolean save(Employee e) {
         return employeeDao.save(e);
     }
-    
-    public Employee getById(Integer id){
+
+    @Override
+    public Employee getById(Integer id) {
         return employeeDao.getById(id);
     }
-    
-    public boolean delete(Integer id){
+
+    @Override
+    public boolean delete(Integer id) {
         return employeeDao.delete(id);
     }
-    
-    public List<Employee> getAll(){
+
+    @Override
+    public List<Employee> getAll() {
         return employeeDao.getAll();
     }
 
