@@ -5,26 +5,22 @@
  */
 package controllers;
 
-import java.util.Scanner;
-import views.EmployeeView;
 import views.Homepage;
-import views.RegionView;
 
 /**
- *
  * @author kelvi
  */
 public class HomeController {
-    
-    public void start(){
-        
+
+    public void start() {
+
         Homepage homepage = new Homepage();
         homepage.display();
-        
+
     }
-    
-    public void setMenu(int option){
-        switch(option){
+
+    public void setMenu(int option) {
+        switch (option) {
             case 1:
                 new EmployeeController().display();
                 break;

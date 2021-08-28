@@ -7,31 +7,29 @@ package views;
 
 import controllers.HomeController;
 import controllers.RegionController;
-import java.util.Scanner;
 import models.Region;
 
 /**
- *
  * @author kelvi
  */
-public class RegionView implements BaseView{
+public class RegionView implements BaseView {
     int regionId;
 
     @Override
-    public void display(){
-        int option = 0;
+    public void display() {
+        int option;
         System.out.println("Showing menu under Region");
         System.out.println("1. Add region");
         System.out.println("2. Show region by ID");
         System.out.println("3. Show all region");
         System.out.println("0. Back");
-        
+
         System.out.print("your choice : ");
         option = scanner.nextInt();
-        
+
         System.out.println("=================================");
-        
-        switch(option){
+
+        switch (option) {
             case 1:
                 new RegionController().form(1);
                 break;
@@ -43,20 +41,20 @@ public class RegionView implements BaseView{
                 break;
             case 0:
                 new HomeController().start();
-                        
+
         }
     }
 
     @Override
-    public void form(int type){
-        
+    public void form(int type) {
+
         Region region = new Region();
         System.out.println("=============================");
-        
-        if(type == 1){
+
+        if (type == 1) {
             System.out.print("Region ID : ");
             region.setId(scanner.nextInt());
-        }else{
+        } else {
             System.out.println("Region ID : " + regionId);
             region.setId(regionId);
         }
@@ -64,27 +62,27 @@ public class RegionView implements BaseView{
         System.out.print("Region name : ");
         region.setName(scanner.nextLine());
         System.out.println("================================");
-        
-        String result = new RegionController().save(region) ? "Succesfully" : "Failed";
+
+        String result = new RegionController().save(region) ? "Successfully" : "Failed";
         System.out.println(result);
-        
+
         System.out.println("================================");
-        
+
         this.display();
     }
 
     @Override
-    public void show(){
-        
+    public void show() {
+
         System.out.print("Enter Region ID : ");
         regionId = scanner.nextInt();
         System.out.println();
         System.out.println("Searching..");
         System.out.println();
-        
+
         Region region = new RegionController().getById(regionId);
-        
-        if(region != null){
+
+        if (region != null) {
             System.out.println("Region ID : " + region.getId());
             System.out.println("Region name : " + region.getName());
             System.out.println("=================================");
@@ -93,9 +91,9 @@ public class RegionView implements BaseView{
             System.out.println("0. Back");
             System.out.print("your choice : ");
             int option = scanner.nextInt();
-            
+
             System.out.println("=================================");
-            switch(option){
+            switch (option) {
                 case 1:
                     this.form(2);
                     break;
@@ -109,15 +107,17 @@ public class RegionView implements BaseView{
                     this.display();
                     break;
                 default:
+                    System.out.println("Cannot find your choice");
                     this.display();
+                    break;
             }
-        }else{
-            System.out.println("Sorry Region with id " +regionId+ " not found!");
+        } else {
+            System.out.println("Sorry Region with id " + regionId + " not found!");
         }
     }
 
     @Override
-    public void showAll(){
+    public void showAll() {
         for (Region region : new RegionController().getAll()) {
             System.out.println("Region ID : " + region.getId());
             System.out.println("Region name : " + region.getName());
@@ -125,9 +125,9 @@ public class RegionView implements BaseView{
         }
         System.out.println("0. Back");
         System.out.print("your choice : ");
-        if(scanner.nextInt() == 0){
+        if (scanner.nextInt() == 0) {
             this.display();
         }
     }
-    
+
 }

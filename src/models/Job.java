@@ -6,7 +6,6 @@
 package models;
 
 /**
- *
  * @author kelvi
  */
 public class Job {
@@ -20,12 +19,12 @@ public class Job {
         this.maxSalary = max_salary;
     }
 
+    public Job() {
+    }
+
     @Override
     public String toString() {
         return "Job{" + "id=" + id + ", title=" + title + ", min_salary=" + minSalary + ", max_salary=" + maxSalary + '}';
-    }
-
-    public Job() {
     }
 
     public String getId() {
@@ -52,7 +51,7 @@ public class Job {
         this.minSalary = min_salary;
     }
 
-    public double getMaxsalary() {
+    public double getMaxSalary() {
         return maxSalary;
     }
 

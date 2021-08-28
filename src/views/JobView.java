@@ -4,12 +4,12 @@ import controllers.HomeController;
 import controllers.JobController;
 import models.Job;
 
-public class JobView implements BaseView{
+public class JobView implements BaseView {
     String jobId;
 
     @Override
     public void display() {
-        int option = 0;
+        int option;
         System.out.println("Showing menu under Job");
         System.out.println("1. Add job");
         System.out.println("2. Show job by ID");
@@ -21,7 +21,7 @@ public class JobView implements BaseView{
 
         System.out.println("=================================");
 
-        switch(option){
+        switch (option) {
             case 1:
                 new JobController().form(1);
                 break;
@@ -42,10 +42,10 @@ public class JobView implements BaseView{
         Job job = new Job();
         System.out.println("=============================");
 
-        if(type == 1){
+        if (type == 1) {
             System.out.print("Job ID : ");
             job.setId(scanner.next());
-        }else{
+        } else {
             System.out.println("Job ID : " + jobId);
             job.setId(jobId);
         }
@@ -58,7 +58,7 @@ public class JobView implements BaseView{
         job.setMaxSalary(scanner.nextDouble());
         System.out.println("================================");
 
-        String result = new JobController().save(job) ? "Succesfully" : "Failed";
+        String result = new JobController().save(job) ? "Successfully" : "Failed";
         System.out.println(result);
 
         System.out.println("================================");
@@ -77,11 +77,11 @@ public class JobView implements BaseView{
 
         Job job = new JobController().getById(jobId);
 
-        if(job != null){
+        if (job != null) {
             System.out.println("Job ID : " + job.getId());
             System.out.println("Job name : " + job.getTitle());
             System.out.println("Min salary : " + job.getMinSalary());
-            System.out.println("Max salary : " + job.getMaxsalary());
+            System.out.println("Max salary : " + job.getMaxSalary());
             System.out.println("=================================");
             System.out.println("1. Update Job");
             System.out.println("2. Delete Job");
@@ -90,7 +90,7 @@ public class JobView implements BaseView{
             int option = scanner.nextInt();
 
             System.out.println("=================================");
-            switch(option){
+            switch (option) {
                 case 1:
                     this.form(2);
                     break;
@@ -104,10 +104,11 @@ public class JobView implements BaseView{
                     this.display();
                     break;
                 default:
+                    System.out.println("your choice cannot be found");
                     this.display();
             }
-        }else{
-            System.out.println("Sorry Job with id " +jobId+ " not found!");
+        } else {
+            System.out.println("Sorry Job with id " + jobId + " not found!");
         }
     }
 
@@ -117,12 +118,12 @@ public class JobView implements BaseView{
             System.out.println("Job ID : " + job.getId());
             System.out.println("Job name : " + job.getTitle());
             System.out.println("Min Salary : " + job.getMinSalary());
-            System.out.println("Max Salary : " + job.getMaxsalary());
+            System.out.println("Max Salary : " + job.getMaxSalary());
             System.out.println("=================================");
         }
         System.out.println("0. Back");
         System.out.print("your choice : ");
-        if(scanner.nextInt() == 0){
+        if (scanner.nextInt() == 0) {
             this.display();
         }
     }

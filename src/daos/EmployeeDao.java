@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package daos;
+
 import models.Employee;
 import tools.Query;
 
@@ -15,78 +16,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author kelvi
  */
-public class EmployeeDao implements DAOInterface<Employee, Integer>{
+public class EmployeeDao implements DAOInterface<Employee, Integer> {
     private final Connection connection;
 
     /**
      * <p>This method used to create connection to the database</p>
-     * @param connection
+     *
+     * @param connection is connection parameter
      */
-    public EmployeeDao(Connection connection){
+    public EmployeeDao(Connection connection) {
         this.connection = connection;
     }
 
     /**
      * <p>This method used to get List of employee</p>
+     *
      * @return List of Employee
      */
     @Override
     public List<Employee> getAll() {
         List<Employee> employees = new ArrayList<>();
-        
+
         try {
             ResultSet resultSet = connection
                     .prepareStatement(Query.GET_EMPLOYEE.getDisplayQuery())
-                    .executeQuery();    
-            
-            System.out.println(resultSet);
-            
-            while(resultSet.next()) {
-                employees.add(
-                    new Employee(
-                            resultSet.getInt(1),
-                            resultSet.getString(2),
-                            resultSet.getString(3),
-                            resultSet.getString(4),
-                            resultSet.getString(5),
-                            resultSet.getDate(6),
-                            resultSet.getString(7),
-                            resultSet.getDouble(8),
-                            resultSet.getDouble(9),
-                            resultSet.getInt(10),
-                            resultSet.getInt(11)
-                    )
-                );
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println(e.getMessage());
-        }
-        
-        return employees;
-    }
+                    .executeQuery();
 
-    /**
-     * <p>This method used to get single row employee by the employee ID</p>
-     * @param id is a key from object entity
-     * @return single row of employee
-     */
-    @Override
-    public Employee getById(Integer id) {
-        
-        Employee employee = null;
-        
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(Query.GET_BY_ID_EMPLOYEE.getDisplayQuery());
-            preparedStatement.setInt(1, id);
-            
-            ResultSet resultSet = preparedStatement.executeQuery();
-            
-            while(resultSet.next()) {
-                employee =  new Employee(
+            System.out.println(resultSet);
+
+            while (resultSet.next()) {
+                employees.add(
+                        new Employee(
                                 resultSet.getInt(1),
                                 resultSet.getString(2),
                                 resultSet.getString(3),
@@ -98,17 +60,59 @@ public class EmployeeDao implements DAOInterface<Employee, Integer>{
                                 resultSet.getDouble(9),
                                 resultSet.getInt(10),
                                 resultSet.getInt(11)
-                            );
+                        )
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+
+        return employees;
+    }
+
+    /**
+     * <p>This method used to get single row employee by the employee ID</p>
+     *
+     * @param id is a key from object entity
+     * @return single row of employee
+     */
+    @Override
+    public Employee getById(Integer id) {
+
+        Employee employee = null;
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(Query.GET_BY_ID_EMPLOYEE.getDisplayQuery());
+            preparedStatement.setInt(1, id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                employee = new Employee(
+                        resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5),
+                        resultSet.getDate(6),
+                        resultSet.getString(7),
+                        resultSet.getDouble(8),
+                        resultSet.getDouble(9),
+                        resultSet.getInt(10),
+                        resultSet.getInt(11)
+                );
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        
+
         return employee;
     }
 
     /**
      * <p>This method used to insert or update employee</p>
+     *
      * @param employee is an object of employee
      * @return is boolean true when employee saved or updated, and false when failed to saved or update
      */
@@ -116,10 +120,10 @@ public class EmployeeDao implements DAOInterface<Employee, Integer>{
     public boolean save(Employee employee) {
         try {
             PreparedStatement preparedStatement;
-            if(getById(employee.getId()) != null){
+            if (getById(employee.getId()) != null) {
                 preparedStatement = connection.prepareStatement(Query.UPDATE_EMPLOYEE.getDisplayQuery());
                 System.out.println("Updating..");
-            }else{
+            } else {
                 preparedStatement = connection.prepareStatement(Query.INSERT_EMPLOYEE.getDisplayQuery());
                 System.out.println("Inserting..");
             }
@@ -131,7 +135,7 @@ public class EmployeeDao implements DAOInterface<Employee, Integer>{
             preparedStatement.setDate(5, employee.getHireDate());
             preparedStatement.setString(6, employee.getJob());
             preparedStatement.setDouble(7, employee.getSalary());
-            preparedStatement.setDouble(8, employee.getCommisionPct());
+            preparedStatement.setDouble(8, employee.getCommissionPct());
             preparedStatement.setInt(9, employee.getManager());
             preparedStatement.setInt(10, employee.getDepartment());
             preparedStatement.setInt(11, employee.getId());
@@ -145,6 +149,7 @@ public class EmployeeDao implements DAOInterface<Employee, Integer>{
 
     /**
      * <p>This method used to delete the employee</p>
+     *
      * @param id is a key from object entity
      * @return true when employee deleted, and false when failed to delete
      */
@@ -161,5 +166,5 @@ public class EmployeeDao implements DAOInterface<Employee, Integer>{
 
         return false;
     }
-    
+
 }

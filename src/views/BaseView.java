@@ -4,8 +4,12 @@ import java.util.Scanner;
 
 public interface BaseView {
     Scanner scanner = new Scanner(System.in);
-    public void display();
-    public void form(int type);
-    public void show();
-    public void showAll();
+
+    void display();
+
+    void form(int type);
+
+    void show();
+
+    void showAll();
 }
