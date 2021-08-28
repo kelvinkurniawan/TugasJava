@@ -12,6 +12,9 @@ import views.Homepage;
  */
 public class HomeController {
 
+    /**
+     * <p>Starting the application view</p>
+     */
     public void start() {
 
         Homepage homepage = new Homepage();
@@ -19,6 +22,11 @@ public class HomeController {
 
     }
 
+    /**
+     * Set the display option when menu selected
+     *
+     * @param option is selected menu
+     */
     public void setMenu(int option) {
         switch (option) {
             case 1:
@@ -38,6 +46,13 @@ public class HomeController {
                 break;
             case 6:
                 new LocationController().display();
+                break;
+            case 0:
+                System.exit(0);
+                break;
+            default:
+                System.out.println("Your choice cannot be found!");
+                new HomeController().start();
                 break;
         }
     }
