@@ -38,7 +38,23 @@ public enum Query {
     GET_BY_ID_EMPLOYEE("SELECT * FROM employees WHERE employee_id = ?"),
     UPDATE_EMPLOYEE("UPDATE employees SET first_name = ?, last_name = ?, email = ?, phone_number = ?, hire_date = ?, job_id = ?, salary = ?, commission_pct = ?, manager_id = ?, department_id = ? WHERE employee_id = ?"),
     INSERT_EMPLOYEE("INSERT INTO employees (first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id, employee_id) VALUES (?,?,?,?,?,?,?,?,?,?,?)"),
-    DELETE_EMPLOYEE("DELETE FROM employees WHERE employee_id = ?");
+    DELETE_EMPLOYEE("DELETE FROM employees WHERE employee_id = ?"),
+
+//    COUNTRIES
+    GET_COUNTRIES("SELECT * FROM countries"),
+    GET_BY_ID_COUNTRIES("SELECT * FROM countries WHERE country_id = ?"),
+    UPDATE_COUNTRIES("UPDATE countries SET country_name = ?, region_id = ? WHERE country_id = ?"),
+    DELETE_COUNTRIES("DELETE FROM countries WHERE country_id = ?"),
+    INSERT_COUNTRIES("INSERT INTO countries (country_name, region_id, country_id) values (?,?,?)"),
+
+//    COUNTRIES
+    GET_LOCATIONS("SELECT * FROM locations"),
+    GET_BY_ID_LOCATIONS("SELECT * FROM locations WHERE location_id = ?"),
+    UPDATE_LOCATIONS("UPDATE locations SET street_address = ?, postal_code = ?, city = ?, state_province = ?, country_id = ? WHERE location_id = ?"),
+    DELETE_LOCATIONS("DELETE FROM locations WHERE location_id = ?"),
+    INSERT_LOCATIONS("INSERT INTO locations (street_address, postal_code, city, state_province, country_id, location_id) values (?,?,?)")
+    ;
+
 
     private final String displayQuery;
 
