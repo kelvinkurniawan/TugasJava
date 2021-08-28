@@ -53,7 +53,6 @@ public class EmployeeView implements BaseView {
 
         Employee employee = new Employee();
 
-
         System.out.println("=============================");
 
         if (type == 1) {
