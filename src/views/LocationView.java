@@ -1,16 +1,22 @@
 package views;
 
 
-import controllers.CountryController;
+
 import controllers.HomeController;
 import controllers.LocationController;
-import models.Country;
 import models.Location;
 
+/**
+ * @author fajar
+ */
 public class LocationView implements BaseView {
 
     int locationId;
 
+
+    /**
+     * <p>This method used to show main location menu</p>
+     */
     @Override
     public void display() {
         int option;
@@ -44,6 +50,9 @@ public class LocationView implements BaseView {
         }
     }
 
+    /**
+     * <p>This method used to show form INSERT or UPDATE the country</p>
+     */
     @Override
     public void form(int type) {
         Location location = new Location();
@@ -80,6 +89,9 @@ public class LocationView implements BaseView {
         new LocationController().display();
     }
 
+    /**
+     * <p>This method used to show specific data by input location ID </p>
+     */
     @Override
     public void show() {
         System.out.print("Enter Location ID : ");
@@ -128,6 +140,10 @@ public class LocationView implements BaseView {
         }
     }
 
+
+    /**
+     * <p>This method used to show all data location</p>
+     */
     @Override
     public void showAll() {
         for (Location location : new LocationController().getAll()) {

@@ -1,11 +1,15 @@
 package models;
 
+/**
+ * @author fajar
+ */
 public class Location {
     private int id;
     private String street_address, postal_code, city,state_province,country_id;
 
     public Location() {
     }
+
 
     public Location(int id, String street_address, String postal_code, String city, String state_province, String country_id) {
         this.id = id;
@@ -15,6 +19,12 @@ public class Location {
         this.state_province = state_province;
         this.country_id = country_id;
     }
+
+
+    /**
+     *
+     * Setter & Getter Variable
+     */
 
     public int getId() {
         return id;

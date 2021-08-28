@@ -1,7 +1,6 @@
 package daos;
 
 import models.Country;
-import models.Department;
 import tools.Query;
 
 import java.sql.Connection;
@@ -11,6 +10,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author fajar
+ */
+
 public class CountryDao implements DAOInterface<Country, String>{
 
     private final Connection connection;
@@ -19,6 +22,11 @@ public class CountryDao implements DAOInterface<Country, String>{
         this.connection = connection;
     }
 
+    /**
+     * <p>This method used to get List of Country</p>
+     *
+     * @return will returning list of country
+     */
     @Override
     public List<Country> getAll() {
         List<Country> listCountry = new ArrayList<>();
@@ -34,6 +42,13 @@ public class CountryDao implements DAOInterface<Country, String>{
         return listCountry;
     }
 
+
+    /**
+     * <p>This method used to get single row country by the identifier</p>
+     *
+     * @param id is a key from country entity
+     * @return is object country
+     */
     @Override
     public Country getById(String id) {
         Country country = null;
@@ -53,6 +68,12 @@ public class CountryDao implements DAOInterface<Country, String>{
         return country;
     }
 
+    /**
+     * <p>This method used to insert or update country</p>
+     *
+     * @param country will replaced by the country entity
+     * @return boolean true when success and false when failed
+     */
     @Override
     public boolean save(Country country) {
         try {
@@ -76,6 +97,12 @@ public class CountryDao implements DAOInterface<Country, String>{
     }
 
 
+    /**
+     * <p>This method used to delete the country</p>
+     *
+     * @param id is a key from country entity
+     * @return boolean true when success and false when failed
+     */
     @Override
     public boolean delete(String id) {
         try{

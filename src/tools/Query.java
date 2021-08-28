@@ -7,7 +7,7 @@ package tools;
 
 /**
  *
- * @author kelvi
+ * @author kelvi & fajar
  */
 public enum Query {
 

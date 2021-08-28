@@ -4,11 +4,17 @@ import controllers.CountryController;
 import controllers.HomeController;
 import models.Country;
 
+/**
+ * @author fajar
+ */
 
 public class CountryView implements BaseView {
 
     String countryId;
 
+    /**
+     * <p>This method used to show main country menu</p>
+     */
     @Override
     public void display() {
         int option;
@@ -42,6 +48,9 @@ public class CountryView implements BaseView {
         }
     }
 
+    /**
+     * <p>This method used to show form INSERT or UPDATE the country</p>
+     */
     @Override
     public void form(int type) {
         Country country = new Country();
@@ -74,6 +83,9 @@ public class CountryView implements BaseView {
         new CountryController().display();
     }
 
+    /**
+     * <p>This method used to show specific data by input country ID </p>
+     */
     @Override
     public void show() {
         System.out.print("Enter Country ID : ");
@@ -119,6 +131,9 @@ public class CountryView implements BaseView {
         }
     }
 
+    /**
+     * <p>This method used to show all data country</p>
+     */
     @Override
     public void showAll() {
         for (Country country : new CountryController().getAll()) {
