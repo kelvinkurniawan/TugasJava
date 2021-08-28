@@ -54,8 +54,8 @@ public class CountryView implements BaseView {
         }else if(type == 2) {
             System.out.println("UPDATE COUNTRY");
             System.out.println("=============================");
-            System.out.print("Country ID : ");
-            country.setId(scanner.next());
+            System.out.println("Country ID : " + countryId);
+            country.setId(countryId);
         }
         scanner.nextLine();
         System.out.print("Country Name : ");

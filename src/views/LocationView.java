@@ -56,8 +56,8 @@ public class LocationView implements BaseView {
         }else if(type == 2) {
             System.out.println("UPDATE COUNTRY");
             System.out.println("=============================");
-            System.out.print("Country ID : ");
-            location.setId(scanner.nextInt());
+            System.out.println("Location ID : " + locationId);
+            location.setId(locationId);
         }
         scanner.nextLine();
         System.out.print("Street Address : ");
