@@ -4,14 +4,15 @@
  * and open the template in the editor.
  */
 package daos;
+import models.Job;
+import tools.Query;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import models.Job;
-import tools.Query;
 
 /**
  *
@@ -20,11 +21,19 @@ import tools.Query;
 public class JobDao implements DAOInterface<Job, String>{
     
     private final Connection connection;
-    
+
+    /**
+     * <p>This method used to create connection to the database</p>
+     * @param connection
+     */
     public JobDao(Connection connection){
         this.connection = connection;
     }
 
+    /**
+     * <p>This method used to get list of Job</p>
+     * @return list of Job
+     */
     @Override
     public List<Job> getAll() {
         List<Job> jobs = new ArrayList<>();
@@ -47,6 +56,11 @@ public class JobDao implements DAOInterface<Job, String>{
         return jobs;
     }
 
+    /**
+     * <p>This method used to get single row job by the job id</p>
+     * @param id is a key from object entity
+     * @return single row of job
+     */
     @Override
     public Job getById(String id) {
         Job job = null;
@@ -68,6 +82,11 @@ public class JobDao implements DAOInterface<Job, String>{
         return job;
     }
 
+    /**
+     * <p>this method used to insert or update job</p>
+     * @param job
+     * @return is boolean true when job saved or updated, and false when failed to saved or update
+     */
     @Override
     public boolean save(Job job) {
         try {
@@ -92,6 +111,11 @@ public class JobDao implements DAOInterface<Job, String>{
         return false;
     }
 
+    /**
+     * <p>This method used to delete the job</p>
+     * @param id is a key from object entity
+     * @return is boolean true when job deleted, and false when failed to delete
+     */
     @Override
     public boolean delete(String id) {
         try {

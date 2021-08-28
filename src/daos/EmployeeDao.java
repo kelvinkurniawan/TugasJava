@@ -4,15 +4,15 @@
  * and open the template in the editor.
  */
 package daos;
+import models.Employee;
+import tools.Query;
+
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import models.Employee;
-import tools.Query;
 
 /**
  *
@@ -20,11 +20,19 @@ import tools.Query;
  */
 public class EmployeeDao implements DAOInterface<Employee, Integer>{
     private final Connection connection;
-    
+
+    /**
+     * <p>This method used to create connection to the database</p>
+     * @param connection
+     */
     public EmployeeDao(Connection connection){
         this.connection = connection;
     }
 
+    /**
+     * <p>This method used to get List of employee</p>
+     * @return List of Employee
+     */
     @Override
     public List<Employee> getAll() {
         List<Employee> employees = new ArrayList<>();
@@ -61,6 +69,11 @@ public class EmployeeDao implements DAOInterface<Employee, Integer>{
         return employees;
     }
 
+    /**
+     * <p>This method used to get single row employee by the employee ID</p>
+     * @param id is a key from object entity
+     * @return single row of employee
+     */
     @Override
     public Employee getById(Integer id) {
         
@@ -94,6 +107,11 @@ public class EmployeeDao implements DAOInterface<Employee, Integer>{
         return employee;
     }
 
+    /**
+     * <p>This method used to insert or update employee</p>
+     * @param employee is an object of employee
+     * @return is boolean true when employee saved or updated, and false when failed to saved or update
+     */
     @Override
     public boolean save(Employee employee) {
         try {
@@ -125,6 +143,11 @@ public class EmployeeDao implements DAOInterface<Employee, Integer>{
         return false;
     }
 
+    /**
+     * <p>This method used to delete the employee</p>
+     * @param id is a key from object entity
+     * @return true when employee deleted, and false when failed to delete
+     */
     @Override
     public boolean delete(Integer id) {
         try {
