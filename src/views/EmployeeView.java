@@ -64,10 +64,11 @@ public class EmployeeView implements BaseView {
             employee.setId(empId);
         }
 
+        scanner.nextLine();
         System.out.print("First Name : ");
-        employee.setFirstName(scanner.next());
+        employee.setFirstName(scanner.nextLine());
         System.out.print("Last Name : ");
-        employee.setLastName(scanner.next());
+        employee.setLastName(scanner.nextLine());
         System.out.print("Email : ");
         employee.setEmail(scanner.next());
         System.out.print("Phone : ");
