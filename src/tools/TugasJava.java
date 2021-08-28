@@ -8,7 +8,6 @@ package tools;
 import controllers.HomeController;
 
 /**
- *
  * @author kelvi
  */
 public class TugasJava {
@@ -18,9 +17,9 @@ public class TugasJava {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
+
         new HomeController().start();
 
     }
-    
+
 }

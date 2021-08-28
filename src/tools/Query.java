@@ -33,7 +33,7 @@ public enum Query {
     DELETE_DEPARTMENT("DELETE FROM departments WHERE department_id = ?"),
     INSERT_DEPARTMENT("INSERT INTO departments(department_name, manager_id, location_id, department_id) values (?,?,?,?)"),
     
-//    EPLOYEE
+//    EMPLOYEE
     GET_EMPLOYEE("SELECT * FROM employees"),
     GET_BY_ID_EMPLOYEE("SELECT * FROM employees WHERE employee_id = ?"),
     UPDATE_EMPLOYEE("UPDATE employees SET first_name = ?, last_name = ?, email = ?, phone_number = ?, hire_date = ?, job_id = ?, salary = ?, commission_pct = ?, manager_id = ?, department_id = ? WHERE employee_id = ?"),

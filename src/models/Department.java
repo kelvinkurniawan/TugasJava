@@ -6,7 +6,6 @@
 package models;
 
 /**
- *
  * @author kelvi
  */
 public class Department {
@@ -18,6 +17,9 @@ public class Department {
         this.manager = manager_id;
         this.location = location_id;
         this.name = name;
+    }
+
+    public Department() {
     }
 
     public int getId() {
