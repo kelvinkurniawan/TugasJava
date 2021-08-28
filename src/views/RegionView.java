@@ -112,7 +112,7 @@ public class RegionView implements BaseView{
                     this.display();
             }
         }else{
-            System.out.println("Sorry Region with id " +region.getId()+ " not found!");
+            System.out.println("Sorry Region with id " +regionId+ " not found!");
         }
     }
 

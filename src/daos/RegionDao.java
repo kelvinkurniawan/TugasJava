@@ -5,14 +5,15 @@
  */
 package daos;
 
+import models.Region;
+import tools.Query;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import models.Region;
-import tools.Query;
 
 /**
  *
@@ -20,11 +21,19 @@ import tools.Query;
  */
 public class RegionDao implements DAOInterface<Region, Integer>{
     private final Connection connection;
-    
+
+    /**
+     * <p>This method used to create connection to the database</p>
+     * @param connection
+     */
     public RegionDao(Connection connection){
         this.connection = connection;
     }
 
+    /**
+     * <p>This method used to get list of Region</p>
+     * @return list of region
+     */
     @Override
     public List<Region> getAll() {
         List<Region> regions = new ArrayList<>();
@@ -47,6 +56,11 @@ public class RegionDao implements DAOInterface<Region, Integer>{
         return regions;
     }
 
+    /**
+     * <p>This method used to get single row region by the region id</p>
+     * @param id is a key from object entity
+     * @return single row of region
+     */
     @Override
     public Region getById(Integer id) {
         Region region = null;
@@ -66,6 +80,11 @@ public class RegionDao implements DAOInterface<Region, Integer>{
         return region;
     }
 
+    /**
+     * <p>This method used to insert or update the region</p>
+     * @param region
+     * @return is boolean true when region saved or updated, and false when failed to saved or update
+     */
     @Override
     public boolean save(Region region) {
         try {
@@ -88,6 +107,11 @@ public class RegionDao implements DAOInterface<Region, Integer>{
         return false;
     }
 
+    /**
+     * <p>This method used to delete the region</p>
+     * @param id is a key from object entity
+     * @return is boolean true when region deleted, and false when failed to delete
+     */
     @Override
     public boolean delete(Integer id) {
         try {
