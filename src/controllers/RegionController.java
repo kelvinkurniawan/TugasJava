@@ -6,40 +6,40 @@
 package controllers;
 
 import daos.RegionDao;
-import java.util.List;
 import models.Region;
 import views.RegionView;
 
+import java.util.List;
+
 /**
- *
  * @author kelvi
  */
-public class RegionController extends BaseController<Region, Integer>{
+public class RegionController extends BaseController<Region, Integer> {
     RegionDao regionDao;
     RegionView regionView;
-    
-    public RegionController(){
+
+    public RegionController() {
         this.regionDao = new RegionDao(dbc.getConnection());
         this.regionView = new RegionView();
     }
 
     @Override
-    public boolean save(Region r){
+    public boolean save(Region r) {
         return regionDao.save(r);
     }
 
     @Override
-    public Region getById(Integer id){
+    public Region getById(Integer id) {
         return regionDao.getById(id);
     }
 
     @Override
-    public boolean delete(Integer id){
+    public boolean delete(Integer id) {
         return regionDao.delete(id);
     }
 
     @Override
-    public List<Region> getAll(){
+    public List<Region> getAll() {
         return regionDao.getAll();
     }
 

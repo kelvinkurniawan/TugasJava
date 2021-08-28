@@ -12,15 +12,14 @@ import views.DepartmentView;
 import java.util.List;
 
 /**
- *
  * @author kelvi
  */
-public class DepartmentController extends BaseController<Department, Integer>{
+public class DepartmentController extends BaseController<Department, Integer> {
 
     DepartmentDao departmentDao;
     DepartmentView departmentView;
 
-    public DepartmentController(){
+    public DepartmentController() {
         departmentDao = new DepartmentDao(dbc.getConnection());
         departmentView = new DepartmentView();
     }

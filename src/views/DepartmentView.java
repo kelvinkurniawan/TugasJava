@@ -2,16 +2,14 @@ package views;
 
 import controllers.DepartmentController;
 import controllers.HomeController;
-import controllers.JobController;
 import models.Department;
-import models.Job;
 
-public class DepartmentView implements BaseView{
+public class DepartmentView implements BaseView {
     int departmentId;
 
     @Override
     public void display() {
-        int option = 0;
+        int option;
         System.out.println("Showing menu under Department");
         System.out.println("1. Add Department");
         System.out.println("2. Show department by ID");
@@ -23,7 +21,7 @@ public class DepartmentView implements BaseView{
 
         System.out.println("=================================");
 
-        switch(option){
+        switch (option) {
             case 1:
                 new DepartmentController().form(1);
                 break;
@@ -44,10 +42,10 @@ public class DepartmentView implements BaseView{
         Department department = new Department();
         System.out.println("=============================");
 
-        if(type == 1){
+        if (type == 1) {
             System.out.print("Department ID : ");
             department.setId(scanner.nextInt());
-        }else{
+        } else {
             System.out.println("Department ID : " + departmentId);
             department.setId(departmentId);
         }
@@ -60,7 +58,7 @@ public class DepartmentView implements BaseView{
         department.setLocation(scanner.nextInt());
         System.out.println("================================");
 
-        String result = new DepartmentController().save(department) ? "Succesfully" : "Failed";
+        String result = new DepartmentController().save(department) ? "Successfully" : "Failed";
         System.out.println(result);
 
         System.out.println("================================");
@@ -78,7 +76,7 @@ public class DepartmentView implements BaseView{
 
         Department department = new DepartmentController().getById(departmentId);
 
-        if(department != null){
+        if (department != null) {
             System.out.println("Department ID : " + department.getId());
             System.out.println("Department name : " + department.getName());
             System.out.println("Manager : " + department.getManager());
@@ -91,7 +89,7 @@ public class DepartmentView implements BaseView{
             int option = scanner.nextInt();
 
             System.out.println("=================================");
-            switch(option){
+            switch (option) {
                 case 1:
                     this.form(2);
                     break;
@@ -102,13 +100,14 @@ public class DepartmentView implements BaseView{
                     this.display();
                     break;
                 case 0:
+                    System.out.println("your choice is not found");
                     this.display();
                     break;
                 default:
                     this.display();
             }
-        }else{
-            System.out.println("Sorry Department with id " +departmentId+ " not found!");
+        } else {
+            System.out.println("Sorry Department with id " + departmentId + " not found!");
         }
     }
 
@@ -123,7 +122,7 @@ public class DepartmentView implements BaseView{
         }
         System.out.println("0. Back");
         System.out.print("your choice : ");
-        if(scanner.nextInt() == 0){
+        if (scanner.nextInt() == 0) {
             this.display();
         }
     }

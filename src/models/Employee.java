@@ -8,18 +8,16 @@ package models;
 import java.sql.Date;
 
 
-
 /**
- *
  * @author kelvi
  */
 public class Employee {
     private int id, manager_id, department;
     private String firstName, lastName, email, phone, job;
     private Date hireDate;
-    private double salary, commisionPct;
+    private double salary, commissionPct;
 
-    public Employee(int id, String firstName, String lastName, String email, String phone, Date hireDate, String job_id, double salary, double commisionPct, int manager_id, int department_id) {
+    public Employee(int id, String firstName, String lastName, String email, String phone, Date hireDate, String job_id, double salary, double commissionPct, int manager_id, int department_id) {
         this.id = id;
         this.manager_id = manager_id;
         this.department = department_id;
@@ -30,10 +28,11 @@ public class Employee {
         this.job = job_id;
         this.hireDate = hireDate;
         this.salary = salary;
-        this.commisionPct = commisionPct;
+        this.commissionPct = commissionPct;
     }
-    
-    public Employee(){}
+
+    public Employee() {
+    }
 
     public int getId() {
         return id;
@@ -115,18 +114,18 @@ public class Employee {
         this.salary = salary;
     }
 
-    public double getCommisionPct() {
-        return commisionPct;
+    public double getCommissionPct() {
+        return commissionPct;
     }
 
-    public void setCommisionPct(double commisionPct) {
-        this.commisionPct = commisionPct;
+    public void setCommissionPct(double commissionPct) {
+        this.commissionPct = commissionPct;
     }
 
     @Override
     public String toString() {
-        return "Employee{" + "id=" + id + ", manager_id=" + manager_id + ", department_id=" + department + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", phone=" + phone + ", job_id=" + job + ", hireDate=" + hireDate + ", salary=" + salary + ", commisionPct=" + commisionPct + '}';
+        return "Employee{" + "id=" + id + ", manager_id=" + manager_id + ", department_id=" + department + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", phone=" + phone + ", job_id=" + job + ", hireDate=" + hireDate + ", salary=" + salary + ", commissionPct=" + commissionPct + '}';
     }
-    
-    
+
+
 }

@@ -12,15 +12,14 @@ import views.JobView;
 import java.util.List;
 
 /**
- *
  * @author kelvi
  */
-public class JobController extends BaseController<Job, String>{
+public class JobController extends BaseController<Job, String> {
 
     JobDao jobDao;
     JobView jobView;
 
-    public JobController(){
+    public JobController() {
         jobDao = new JobDao(dbc.getConnection());
         jobView = new JobView();
     }

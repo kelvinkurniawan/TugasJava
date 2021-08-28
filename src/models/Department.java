@@ -6,7 +6,6 @@
 package models;
 
 /**
- *
  * @author kelvi
  */
 public class Department {
@@ -20,7 +19,8 @@ public class Department {
         this.name = name;
     }
 
-    public Department(){};
+    public Department() {
+    }
 
     public int getId() {
         return id;
