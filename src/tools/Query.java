@@ -6,7 +6,12 @@
 package tools;
 
 /**
+<<<<<<< HEAD
+ *
+ * @author kelvi & fajar
+=======
  * @author kelvi
+>>>>>>> master
  */
 public enum Query {
 

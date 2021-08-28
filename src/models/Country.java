@@ -1,5 +1,9 @@
 package models;
 
+/**
+ * @author fajar
+ */
+
 public class Country {
     private String id, country_name;
     private int region_id;
@@ -13,6 +17,10 @@ public class Country {
         this.region_id = region_id;
     }
 
+    /**
+     *
+     * Setter & Getter Variable
+     */
     public String getId() {
         return id;
     }

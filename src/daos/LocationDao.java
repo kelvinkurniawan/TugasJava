@@ -10,6 +10,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author fajar
+ */
+
 public class LocationDao implements DAOInterface<Location,Integer>{
     private final Connection connection;
 
@@ -17,6 +21,12 @@ public class LocationDao implements DAOInterface<Location,Integer>{
         this.connection = connection;
     }
 
+
+    /**
+     * <p>This method used to get List of Location</p>
+     *
+     * @return will returning list of location
+     */
     @Override
     public List<Location> getAll() {
         List<Location> listLocation = new ArrayList<>();
@@ -39,6 +49,12 @@ public class LocationDao implements DAOInterface<Location,Integer>{
         return listLocation;
     }
 
+    /**
+     * <p>This method used to get single row location by the identifier</p>
+     *
+     * @param id is a key from location entity
+     * @return is object location
+     */
     @Override
     public Location getById(Integer id) {
         Location location = null;
@@ -62,6 +78,13 @@ public class LocationDao implements DAOInterface<Location,Integer>{
         return location;
     }
 
+
+    /**
+     * <p>This method used to insert or update location</p>
+     *
+     * @param location will replaced by the location entity
+     * @return boolean true when success and false when failed
+     */
     @Override
     public boolean save(Location location) {
         try{
@@ -88,6 +111,12 @@ public class LocationDao implements DAOInterface<Location,Integer>{
         return false;
     }
 
+    /**
+     * <p>This method used to delete the location</p>
+     *
+     * @param id is a key from location entity
+     * @return boolean true when success and false when failed
+     */
     @Override
     public boolean delete(Integer id) {
         try {
