@@ -10,7 +10,6 @@ import tools.DBConnection;
 import java.util.List;
 
 /**
- *
  * @author kelvi
  */
 public abstract class BaseController<T, K> {
@@ -19,55 +18,60 @@ public abstract class BaseController<T, K> {
     /**
      * Initialize DBConnection
      */
-    public BaseController(){
+    public BaseController() {
         this.dbc = new DBConnection();
     }
 
     /**
-     * <p>Abstract to get all data</p>
+     * <p>Method to get all data of the object</p>
+     *
      * @return list of object
      */
     public abstract List<T> getAll();
 
     /**
-     * <p>Abstract to get object by the id</p>
+     * <p>Method to get object by the id</p>
+     *
      * @param id is identifier of the object
      * @return single row object
      */
     public abstract T getById(K id);
 
     /**
-     * <p>Abstract to insert or update object</p>
+     * <p>Method to insert or update object</p>
+     *
      * @param object is the object
      * @return boolean true when saved, false when failed to save
      */
     public abstract boolean save(T object);
 
     /**
-     * <p>Abstract to delete the object</p>
+     * <p>Method to delete the object</p>
+     *
      * @param id of the object
      * @return boolean true when deleted, false when failed
      */
     public abstract boolean delete(K id);
 
     /**
-     * <p>Abstract to display the main menu</p>
+     * <p>Method to display the main menu</p>
      */
     public abstract void display();
 
     /**
-     * <p>Abstract to display the form</p>
+     * <p>Method to display the form</p>
+     *
      * @param type is int to decided the form is insert method or update method
      */
     public abstract void form(int type);
 
     /**
-     * <p>Abstract to show single row of object</p>
+     * <p>Method to show single row of object</p>
      */
     public abstract void showSingle();
 
     /**
-     * <p>Abstract to show all of the object</p>
+     * <p>Method to show all of the object</p>
      */
     public abstract void showAll();
 }
