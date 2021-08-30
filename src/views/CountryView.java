@@ -81,6 +81,7 @@ public class CountryView implements BaseView {
         System.out.println("================================");
 
         new CountryController().display();
+        System.out.println("Test");
     }
 
     /**
